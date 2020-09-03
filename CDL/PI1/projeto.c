@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
     printf("4 - Excluir um computador\n");
     printf("5 - Listar todos os computadores\n");
     printf("6 - Gerar backup\n");
-    printf("7 - Sair\n");
+    printf("0 - Sair\n");
     printf("************************************\n");
     printf("Digite aqui o que deseja fazer: ");
     scanf("%d", &opcao);
@@ -42,7 +42,28 @@ int main(int argc, char const *argv[])
 			scanf("%f", &ip);
 		break;
 		case (3):
+			printf("****Alterar um computador****\n");
+			printf("Informe o IP do computador: ");
+			scanf("%f", &ip);
+		break;
+		case (4):
+			printf("****Excluir um computador****\n");
+			printf("Informe o IP do computador: ");
+			scanf("%f", &ip);
+		break;
+		case (5):
+			printf("****Listar todos os computadores****\n");
+			printf("A lista dos computadores �:\n");
 			printf("");
+		break;
+		case (6):
+			printf("****Gerar backup****\n");
+			printf("Gerando beckup:\n");
+			scanf("%f", &ip);
+		break;
+		case (0):
+			printf("****SAIR****\n");
+			printf("Obrigado e volte sempre!");
 		break;
 		default: printf("Opcao Invalida!");
 	}
