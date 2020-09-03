@@ -5,6 +5,8 @@ int main(int argc, char const *argv[])
     opcao = Menu ();
     SubMenu(opcao);
 }
+
+
 int Menu (){
 	int vl_opcao;
 	printf("****Bem-vindos ao sistema CADTI****\n");
@@ -50,6 +52,7 @@ int SubMenu (int vl_opcao) {
 	}
     return 0;
 }
+
 void Cadastrar() {
 	char ip[15];
     char pc[15], so[10], versao[10], responsavel[15], setor[10], lista[50];
@@ -78,38 +81,45 @@ void Cadastrar() {
 	printf(lista);
 	return(ip, lista);
 }
+
 void Consultar(){
 	float pIp;
 	printf("****Consultar um computador****\n");
 	printf("Informe o IP do computador: ");
 	scanf("%f", &pIp);
 }
+
 void Alterar(){
 	float pIp;
 	printf("****Alterar um computador****\n");
 	printf("Informe o IP do computador: ");
 	scanf("%f", &pIp);
 }
+
 void Excluir(){
 	float pIp;
 	printf("****Excluir um computador****\n");
 	printf("Informe o IP do computador: ");
 	scanf("%f", &pIp);
 }
+
 void Listar(){
 	printf("****Listar todos os computadores****\n");
 	printf("A lista dos computadores e:\n");
 	printf("");
 }
+
 void Beckup(pLista){
 	printf("****Gerar backup****\n");
 	printf("Gerando beckup:\n");
 	printf(pLista);
 }
+
 void Sair(){
 	printf("****SAIR****\n");
 	printf("Obrigado e volte sempre!");
 }
+
 void Concat(char str1[], char str2[]) {
     strcat(str1, ";");
     strcat(str1, str2);
