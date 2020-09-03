@@ -1,9 +1,12 @@
+#include <string.h>
 int main(int argc, char const *argv[])
 {
     int opcao;
-    float ip, versao;
-    char pc[15], so[10], responsavel[15], setor[10];
-    
+    opcao = Menu ();
+    SubMenu(opcao);
+}
+int Menu (){
+	int vl_opcao;
 	printf("****Bem-vindos ao sistema CADTI****\n");
     printf("********* Menu do sistema**********\n");
     printf("1 - Cadastrar um novo computador\n");
@@ -15,57 +18,99 @@ int main(int argc, char const *argv[])
     printf("0 - Sair\n");
     printf("************************************\n");
     printf("Digite aqui o que deseja fazer: ");
-    scanf("%d", &opcao);
+    scanf("%d", &vl_opcao);
     printf("\n");
-    
-    switch (opcao) {
+    return(vl_opcao);
+}
+
+int SubMenu (int vl_opcao) {
+	switch (vl_opcao) {
 		case (1): 	
-			printf("****Cadastrar um novo computador****\n");
-			printf("Informe o nome da maquina: ");
-			scanf("%s", &pc);
-			printf("Informe o IP da maquina: ");
-			scanf("%f", &ip);
-			printf("Informe o SO instalado na maquina: ");
-			scanf("%s", &so);
-			printf("Informe a versao do SO instalada: ");
-			scanf("%f", &versao);
-			printf("Informe o usuario responsavel pela maquina: ");
-			scanf("%s", &responsavel);
-			printf("Em qual setor o PC esta instalado: ");
-			scanf("%s", &setor);
-			printf("Cadastro do novo computador efetuado com sucesso!\n");
-			printf("************************************\n");
+			Cadastrar();
 		break;
 		case (2):
-			printf("****Consultar um computador****\n");
-			printf("Informe o IP do computador: ");
-			scanf("%f", &ip);
+			Consultar();
 		break;
 		case (3):
-			printf("****Alterar um computador****\n");
-			printf("Informe o IP do computador: ");
-			scanf("%f", &ip);
+			Alterar();
 		break;
 		case (4):
-			printf("****Excluir um computador****\n");
-			printf("Informe o IP do computador: ");
-			scanf("%f", &ip);
+			Excluir();
 		break;
 		case (5):
-			printf("****Listar todos os computadores****\n");
-			printf("A lista dos computadores �:\n");
-			printf("");
+			Listar();
 		break;
 		case (6):
-			printf("****Gerar backup****\n");
-			printf("Gerando beckup:\n");
-			scanf("%f", &ip);
+			Beckup();
 		break;
 		case (0):
-			printf("****SAIR****\n");
-			printf("Obrigado e volte sempre!");
+			Sair();
 		break;
 		default: printf("Opcao Invalida!");
 	}
     return 0;
+}
+void Cadastrar() {
+	char ip[15];
+    char pc[15], so[10], versao[10], responsavel[15], setor[10], lista[50];
+	printf("****Cadastrar um novo computador****\n");
+	printf("Informe o IP da maquina: ");
+	scanf("%s", &ip);
+	Concat(lista, ip);
+	printf("Informe o nome da maquina: ");
+	scanf("%s", &pc);
+	Concat(lista, pc);
+	printf("Informe o SO instalado na maquina: ");
+	scanf("%s", &so);
+	Concat(lista, so);
+	printf("Informe a versao do SO instalada: ");
+	scanf("%s", &versao);
+	Concat(lista, versao);
+	printf("Informe o usuario responsavel pela maquina: ");
+	scanf("%s", &responsavel);
+	Concat(lista, responsavel);
+	printf("Em qual setor o PC esta instalado: ");
+	scanf("%s", &setor);
+	Concat(lista, setor);
+	printf("Cadastro do computador efetuado com sucesso!\n");
+	printf("************************************\n");
+	printf("%s", ip);
+	printf(lista);
+	return(ip, lista);
+}
+void Consultar(){
+	float pIp;
+	printf("****Consultar um computador****\n");
+	printf("Informe o IP do computador: ");
+	scanf("%f", &pIp);
+}
+void Alterar(){
+	float pIp;
+	printf("****Alterar um computador****\n");
+	printf("Informe o IP do computador: ");
+	scanf("%f", &pIp);
+}
+void Excluir(){
+	float pIp;
+	printf("****Excluir um computador****\n");
+	printf("Informe o IP do computador: ");
+	scanf("%f", &pIp);
+}
+void Listar(){
+	printf("****Listar todos os computadores****\n");
+	printf("A lista dos computadores e:\n");
+	printf("");
+}
+void Beckup(pLista){
+	printf("****Gerar backup****\n");
+	printf("Gerando beckup:\n");
+	printf(pLista);
+}
+void Sair(){
+	printf("****SAIR****\n");
+	printf("Obrigado e volte sempre!");
+}
+void Concat(char str1[], char str2[]) {
+    strcat(str1, ";");
+    strcat(str1, str2);
 }
