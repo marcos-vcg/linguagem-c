@@ -28,7 +28,7 @@ int Menu (){
 
 int SubMenu (int vl_opcao) {
 	int opcao = vl_opcao;
-	
+	char pIp;
 	typedef struct {
     	char ip[15];
     	char pc[15]; 
@@ -67,19 +67,16 @@ int SubMenu (int vl_opcao) {
 			//return(comp[id]);
 			break;
 		case 2:
-			float pIp;
 			printf("****Consultar um computador****\n");
 			printf("Informe o IP do computador: ");
-			scanf("%f", &pIp);
+			//scanf("%c", &pIp);
 			break;
 		case 3:
-			float pIp;
 			printf("****Alterar um computador****\n");
 			printf("Informe o IP do computador: ");
 			scanf("%f", &pIp);
 			break;
 		case 4:
-			float pIp;
 			printf("****Excluir um computador****\n");
 			printf("Informe o IP do computador: ");
 			scanf("%f", &pIp);
@@ -92,7 +89,6 @@ int SubMenu (int vl_opcao) {
 		case 6:
 			printf("****Gerar backup****\n");
 			printf("Gerando beckup:\n");
-			printf(pLista);
 			break;
 		case 9:
 			printf("****SAIR****\n");
