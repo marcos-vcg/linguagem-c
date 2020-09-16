@@ -1,7 +1,23 @@
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 int main(int argc, char const *argv[])
 {
-    int opcao;
+	typedef struct {
+    	char ip[15];
+    	char pc[15]; 
+		char so[10];
+		char versao[10];
+		char responsavel[20]; 
+		char setor[15]; 
+		char lista[50];
+	} cad;
+	cad comp[20];
+	int id = 0;
+	
+	
+	
+	int opcao;
     opcao = Menu ();
     SubMenu(opcao);
 }
@@ -54,32 +70,38 @@ int SubMenu (int vl_opcao) {
 }
 
 void Cadastrar() {
+	
+	
+	//id++;
+	cad comp[id];
 	char ip[15];
     char pc[15], so[10], versao[10], responsavel[15], setor[10], lista[50];
 	printf("****Cadastrar um novo computador****\n");
 	printf("Informe o IP da maquina: ");
-	scanf("%s", &ip);
-	Concat(lista, ip);
+	scanf("%s", &comp[id].ip);
+	//Concat(lista, ip);
 	printf("Informe o nome da maquina: ");
-	scanf("%s", &pc);
-	Concat(lista, pc);
+	scanf("%s", &comp.pc);
+	//Concat(lista, pc);
 	printf("Informe o SO instalado na maquina: ");
-	scanf("%s", &so);
-	Concat(lista, so);
+	scanf("%s", &comp.so);
+	//Concat(lista, so);
 	printf("Informe a versao do SO instalada: ");
-	scanf("%s", &versao);
-	Concat(lista, versao);
+	scanf("%s", &comp.versao);
+	//Concat(lista, versao);
 	printf("Informe o usuario responsavel pela maquina: ");
-	scanf("%s", &responsavel);
-	Concat(lista, responsavel);
+	scanf("%s", &comp.responsavel);
+	//Concat(lista, responsavel);
 	printf("Em qual setor o PC esta instalado: ");
-	scanf("%s", &setor);
-	Concat(lista, setor);
+	scanf("%s", &comp.setor);
+	//Concat(lista, setor);
 	printf("Cadastro do computador efetuado com sucesso!\n");
 	printf("************************************\n");
-	printf("%s", ip);
-	printf(lista);
-	return(ip, lista);
+	//printf("%s", ip);
+	
+	//printf(concat(comp.pc, comp.ip, comp.so, comp.versao, comp.responsavel, comp.setor));
+	printf("Cadastro Efetuado com Sucesso!")
+	return(comp);
 }
 
 void Consultar(){
