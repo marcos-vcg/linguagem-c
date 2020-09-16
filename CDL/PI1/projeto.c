@@ -5,8 +5,31 @@ int main(int argc, char const *argv[])
 {
 	int opcao = Menu ();
     SubMenu(opcao);
-    
-    	typedef struct {
+}
+
+
+int Menu (){
+	int opcao;
+	printf("****Bem-vindos ao sistema CADTI****\n");
+    printf("********* Menu do sistema**********\n");
+    printf("1 - Cadastrar um novo computador\n");
+    printf("2 - Consultar um computador\n");
+    printf("3 - Alterar um computador\n");
+    printf("4 - Excluir um computador\n");
+    printf("5 - Listar todos os computadores\n");
+    printf("6 - Gerar backup\n");
+    printf("9 - Sair\n");
+    printf("************************************\n");
+    printf("Digite aqui o que deseja fazer: ");
+    scanf("%d", &opcao);
+    printf("\n");
+    return(opcao);
+}
+
+int SubMenu (int vl_opcao) {
+	int opcao = vl_opcao;
+	
+	typedef struct {
     	char ip[15];
     	char pc[15]; 
 		char so[10];
@@ -77,31 +100,6 @@ int main(int argc, char const *argv[])
 			break;
 		default: printf("Opcao Invalida!");
 	}
-}
-
-
-int Menu (){
-	int opcao;
-	printf("****Bem-vindos ao sistema CADTI****\n");
-    printf("********* Menu do sistema**********\n");
-    printf("1 - Cadastrar um novo computador\n");
-    printf("2 - Consultar um computador\n");
-    printf("3 - Alterar um computador\n");
-    printf("4 - Excluir um computador\n");
-    printf("5 - Listar todos os computadores\n");
-    printf("6 - Gerar backup\n");
-    printf("9 - Sair\n");
-    printf("************************************\n");
-    printf("Digite aqui o que deseja fazer: ");
-    scanf("%d", &opcao);
-    printf("\n");
-    return(opcao);
-}
-
-int SubMenu (int vl_opcao) {
-	int opcao = vl_opcao;
-	
-
     
 }
 
