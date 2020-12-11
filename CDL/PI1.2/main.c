@@ -10,6 +10,7 @@
 // Primeiro vamos colocar o jogo da forca
 
 
+
 // Declaração das variáveis do jogo de Forca
 typedef struct{
     char palavra[100];
@@ -29,7 +30,8 @@ void VerificaTentativa(char qtdCaracter,char tentativa,int *certo,int *contador,
 void CapturaLetra(char *tentativa);
 void VerificaSeErrou(char frase[],int qtdCaracter,int *contador,char tentativa,int *erro1,int *erro2,int *erro3,int *erro4,int *erro5,int *n);
 int MenurPrincipal();
-char* BuscarPalavra(char nomeArquivo[]);
+//char* BuscarPalavra(char nomeArquivo[]);
+char* BuscarPalavra();
 void CriarListaVazia();
 void InseriNaLista(Palavra palavra);
 int SorteiaPalavra(int faixa);
@@ -38,13 +40,15 @@ void limparLista();
 
 // Função principal do Jogo de Forca
 int Forca (){
+	
     setlocale(LC_ALL, "Portuguese");
     int i, contador, n, qtdCaracter, erro1, erro2, erro3, erro4, erro5, certo,opcao;
     char frase[100], resposta[100], tentativa, confirmar, continuar;
-    do {
+    
+	do {
         system("cls");
         DesenhaForca(contador,1);
- 		strcpy(frase,BuscarPalavra("lista.txt"));
+ 		strcpy(frase,BuscarPalavra());
         certo = 0;
         qtdCaracter=0;
         n = 0;
@@ -146,6 +150,7 @@ void VerificaChances(int contador){
 	        break;
 	    case 5:
 	        puts("\n\nSe errar agora você morre!!!!");
+	        break;
     }
 }
 
@@ -167,7 +172,7 @@ void DesenhaForca(int contador,int flagInicio){
     if(flagInicio==0){
         switch(contador){
 	        case 0:
-	            printf("____________   \n||         |   \n||        _|_\n||          \n||        \ \n||         \n|| \n|| \n|| \n\n");
+	            printf("____________   \n||         |   \n||        _|_\n||          \n||         \n||         \n|| \n|| \n|| \n\n");
 	            break;
 	        case 1:
 	            printf("____________   \n||         |   \n||        _|_\n||         O    \n||         \n||       \n|| \n|| \n|| \n\n");
@@ -261,9 +266,39 @@ void VerificaSeErrou(char frase[],int qtdCaracter,int *contador,char tentativa,i
 }
 
 
+char* BuscarPalavra() {
+	FILE* f;
+	char palavraSorteada[100];
+
+	f = fopen("palavras.txt", "r");
+	if(f == 0) {
+		printf("Banco de dados de palavras não disponível\n\n");
+		exit(1);
+	}
+
+	int qtddepalavras;
+	fscanf(f, "%d", &qtddepalavras);
+
+	srand(time(0));
+	int randomico = rand() % qtddepalavras;
+
+	int i;
+	for(i = 0; i <= randomico; i++) {
+		fscanf(f, "%s", palavraSorteada);
+	}
+
+	fclose(f);
+	return palavraSorteada;
+}
+
+
+
+/*
 // Função que busca uma palavra no arquivo informado
 char* BuscarPalavra(char nomeArquivo[]){
-    FILE *pont_arq;
+    
+	
+	FILE *pont_arq;
     char linha[1024]; // variável do tipo string
     char palavraSorteada[100];
     Palavra palavra;
@@ -272,7 +307,7 @@ char* BuscarPalavra(char nomeArquivo[]){
 	// Testa se conseguiu abrir o arquivo
 	if(pont_arq == NULL){
         printf("Erro na abertura do arquivo!");
-        return 1;
+        //return 1;
     }
     int i=0;
     tamanho=0;
@@ -299,9 +334,10 @@ char* BuscarPalavra(char nomeArquivo[]){
         palavraAux=palavraAux->prox;
         i++;
     }
-    limparLista();
-    return palavraSorteada;
-}
+    
+limparLista();
+return palavraSorteada;
+}*/
 
 
 // Função que cria uma lista vazia com alocação de meméria dinamicamente de acordo com tamanho da palavra
@@ -354,6 +390,89 @@ void limparLista(){
 
 
 // Aqui o código do JokenPo
+/*
+void Jokenpo() {
+	
+	int jogador, cpu,w=0;
+	int pontos_jogador=0, pontos_cpu=0;
+	
+	
+	do {
+		printf ("---JokenPo---\n");
+		printf ("%d Jogador X CPU %d\n", pontos_jogador, pontos_cpu);
+		printf ("-------------\n");
+		printf ("0. Pedra\n");
+		printf ("1. Papel\n");
+		printf ("2. Tesoura\n");
+		printf ("3. Sair\n");
+		printf ("\nOpcao: ");
+		scanf ("%d", &jogador);
+      
+      
+      	if (jogador == 0 || jogador == 1 || jogador == 2 || jogador == 3){
+		  	
+			w = 1;
+			  		  
+      	} else{
+      		
+      	  	printf ("Opcao invalida!\n");		  
+		  	system ("pause");
+          	system ("cls");
+		  	w = 0;	
+		}
+		        		  
+    } while (w==0);
+    
+    
+    if (jogador < 0 || jogador >=3) {
+        exit(0);
+    }
+    
+    
+    srand(time(NULL));
+    cpu = rand() % 3; //gera um numero aleatorio
+    
+	switch(cpu) {
+        case 0: printf ("\nCPU -> Pedra\n"); break;
+        case 1: printf ("\nCPU -> Papel\n"); break;
+        case 2: printf ("\nCPU -> Tesoura\n"); break;
+    }
+    
+    
+    //verifica se o jogador venceu
+    if ((jogador == 0 && cpu==2) || (jogador == 1 && cpu == 0) || (jogador == 2 && cpu == 1)) {
+        
+		printf("\nVoce venceu!\n");
+        pontos_jogador++;
+        system ("pause");
+        system ("cls");
+        jokenpo();
+    }
+    
+    
+    //verifica se houve empate
+    if (jogador == cpu) {
+    	
+        printf ("\nEmpate!\n");
+        system ("pause");
+        system ("cls");
+        jokenpo();
+    
+	} else {
+		
+        printf ("\nCPU venceu!\n");
+        pontos_cpu++;
+        system ("pause");
+        system ("cls");
+        jokenpo();
+
+    }
+        
+	//return 0;
+}
+
+*/
+
 
 
 
@@ -399,7 +518,7 @@ void Menu(){
 			break;
 		
 			case (3):
-				//Alterar();
+				Jokenpo();
 			break;
 
 			case (0):
